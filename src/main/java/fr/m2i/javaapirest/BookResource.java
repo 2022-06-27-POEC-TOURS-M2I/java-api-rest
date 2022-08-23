@@ -3,6 +3,7 @@ package fr.m2i.javaapirest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.UriInfo;
@@ -135,4 +136,32 @@ public class BookResource {
         return result.toString();
     }
 
+    @GET
+    @Path("/details/{id}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getDetailsTextBookById(@PathParam("id") int id) {
+        System.out.println("Endpoint : getDetailsTextBookById");
+        return "Le détail du livre numéro : " + id + " - Il s'agit d'une autobiographie";
+    }
+
+    @GET
+    @Path("/details/{id}")
+    @Produces(MediaType.TEXT_XML)
+    public String getDetailsXMLBookById(@PathParam("id") int id) {
+        System.out.println("Endpoint : getDetailsXMLBookById");
+        return "<?xml version=\"1.0\"?>" +
+                "<details>" +
+                "Le détail du livre numéro : " + id + " - Il s'agit d'une autobiographie" +
+                "</details>";
+    }
+
+    @GET
+    @Path("/details/{id}")
+    @Produces(MediaType.TEXT_HTML)
+    public String getDetailsHTMLBookById(@PathParam("id") int id) {
+        System.out.println("Endpoint : getDetailsHTMLBookById");
+
+        return "<html><head><title>Detail de mon livre</title></head>"
+                + "<body><h1>Le détail du livre numéro : " + id + " - Il s'agit d'une autobiographie</h1></body></html>";
+    }
 }
