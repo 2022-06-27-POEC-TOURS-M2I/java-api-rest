@@ -25,4 +25,27 @@ public class AnnuaireDAO {
     public List<Personne> getPersonnes() {
         return personnes;
     }
+
+    public Personne getPersonneById(Long id) {
+
+        for (Personne p : personnes) {
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+
+        return null;
+    }
+    
+    public boolean delete(Long id) {
+
+        Personne toDelete = getPersonneById(id);
+
+        if (toDelete == null) {
+            return false;
+        }
+
+        personnes.remove(toDelete);
+        return true;
+    }
 }
