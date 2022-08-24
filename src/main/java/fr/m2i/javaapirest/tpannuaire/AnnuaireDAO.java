@@ -36,6 +36,21 @@ public class AnnuaireDAO {
 
         return null;
     }
+
+    public boolean update(Long id, Personne personne) {
+
+        Personne toUpdate = getPersonneById(id);
+
+        if (toUpdate == null) {
+            return false;
+        }
+
+        personnes.remove(toUpdate);
+        personne.setId(id);
+        personnes.add(personne);
+
+        return true;
+    }
     
     public boolean delete(Long id) {
 
