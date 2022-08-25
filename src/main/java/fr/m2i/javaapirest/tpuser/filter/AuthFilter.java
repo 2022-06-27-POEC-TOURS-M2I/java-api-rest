@@ -1,5 +1,6 @@
 package fr.m2i.javaapirest.tpuser.filter;
 
+import fr.m2i.javaapirest.tpuser.model.Role;
 import fr.m2i.javaapirest.tpuser.model.User;
 import fr.m2i.javaapirest.tpuser.util.BasicAuth;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class AuthFilter implements ContainerRequestFilter {
     }
 
     public User checkUser(String email, String password) {
-        User admin = new User("Super", "Admin", "SUPER_ADMIN", "super@admin.com", "admin");
+        User admin = new User("Super", "Admin", Role.admin, "super@admin.com", "admin");
 
         if (admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
             return admin;
